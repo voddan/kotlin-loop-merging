@@ -1,72 +1,73 @@
 package ru.vodopyan.daniil
 
-import org.openjdk.jmh.annotations.Benchmark
-import org.openjdk.jmh.annotations.Fork
-import org.openjdk.jmh.annotations.Measurement
-import org.openjdk.jmh.annotations.Warmup
+import org.openjdk.jmh.annotations.*
 import org.openjdk.jmh.runner.Runner
 import org.openjdk.jmh.runner.options.OptionsBuilder
+import java.util.*
 
-
-
+@State(value = Scope.Benchmark)
+@Fork(value = 1, warmups = 0)
+@Measurement(iterations = 2)
+@Warmup(iterations = 0)
 open class KotlinImpl {
-    /*@Benchmark
-    fun transformList(list: List<String>): Int {
-        val a = list.filter { it.startsWith('a') }
+    private val rand = Random(0)
+
+//    @Param(value = ["3", "10", "50", "100", "1000", "10000", "100000", "1000000"])
+    @Param(value = ["3", "10"])
+    @JvmField
+    var size: Int = 0
+
+    val listInt = List(size) { i -> rand.nextInt(20) * (rand.nextInt(3) - 1) + i}
+    val listStr = List(size) { i -> ('a' + rand.nextInt(3)) + "$i"}
+
+    val arrInt = Array(size) { i -> rand.nextInt(20) * (rand.nextInt(3) - 1) + i}
+    val arrStr = Array(size) { i -> ('a' + rand.nextInt(3)) + "$i"}
+
+    val intArr = IntArray(size) { i -> rand.nextInt(20) * (rand.nextInt(3) - 1) + i}
+
+
+    @Benchmark
+    fun transformList(): Int {
+        val a = listStr.filter { it.startsWith('a') }
         val b = a.map { it.length }
         val c = b.sum()
         return c
     }
 
     @Benchmark
-    fun transformArray(list: Array<String>): Int {
-        val a = list.filter { it.startsWith('a') }
+    fun transformArray(): Int {
+        val a = arrStr.filter { it.startsWith('a') }
         val b = a.map { it.length }
         val c = b.sum()
         return c
     }
 
     @Benchmark
-    fun transformListInt(list: List<Int>): Int {
-        val a = list.filter { it > 10 }
+    fun transformListInt(): Int {
+        val a = listInt.filter { it > 10 }
         val b = a.map { 1 - it }
         val c = b.sum()
         return c
     }
 
     @Benchmark
-    fun transformArrayInt(list: Array<Int>): Int {
-        val a = list.filter { it > 10 }
+    fun transformArrayInt(): Int {
+        val a = arrInt.filter { it > 10 }
         val b = a.map { 1 - it }
         val c = b.sum()
         return c
     }
 
     @Benchmark
-    fun transformIntArray(list: IntArray): Int {
-        val a = list.filter { it > 10 }
+    fun transformIntArray(): Int {
+        val a = intArr.filter { it > 10 }
         val b = a.map { 1 - it }
         val c = b.sum()
         return c
     }
-*/
+
     @Benchmark
-    @Fork(value = 1, warmups = 0)
-    @Measurement(iterations = 5)
-    @Warmup(iterations = 0)
-    fun test() {
-
+    fun baseline(): Int {
+        return intArr.sum()
     }
-
-}
-
-fun main(args: Array<String>) {
-//    org.openjdk.jmh.Main.main(args)
-
-    val opt = OptionsBuilder()
-            .include(KotlinImpl::class.java.simpleName)
-            .forks(1)
-            .build()
-
-    Runner(opt).run()
 }
