@@ -1,8 +1,6 @@
 package ru.vodopyan.daniil
 
 import org.openjdk.jmh.annotations.*
-import org.openjdk.jmh.runner.Runner
-import org.openjdk.jmh.runner.options.OptionsBuilder
 import java.util.*
 
 @State(value = Scope.Benchmark)
@@ -17,14 +15,20 @@ open class KotlinImpl {
     @JvmField
     var size: Int = 0
 
-    val listInt = List(size) { i -> rand.nextInt(20) * (rand.nextInt(3) - 1) + i}
-    val listStr = List(size) { i -> ('a' + rand.nextInt(3)) + "$i"}
+    private lateinit var listInt: List<Int>
+    private lateinit var listStr: List<String>
+    private lateinit var arrInt: Array<Int>
+    private lateinit var arrStr: Array<String>
+    private lateinit var intArr: IntArray
 
-    val arrInt = Array(size) { i -> rand.nextInt(20) * (rand.nextInt(3) - 1) + i}
-    val arrStr = Array(size) { i -> ('a' + rand.nextInt(3)) + "$i"}
-
-    val intArr = IntArray(size) { i -> rand.nextInt(20) * (rand.nextInt(3) - 1) + i}
-
+    @Setup
+    fun init() {
+        listInt = List(size) { i -> rand.nextInt(20) * (rand.nextInt(3) - 1) + i}
+        listStr = List(size) { i -> ('a' + rand.nextInt(3)) + "$i"}
+        arrInt = Array(size) { i -> rand.nextInt(20) * (rand.nextInt(3) - 1) + i}
+        arrStr = Array(size) { i -> ('a' + rand.nextInt(3)) + "$i"}
+        intArr = IntArray(size) { i -> rand.nextInt(20) * (rand.nextInt(3) - 1) + i}
+    }
 
     @Benchmark
     fun transformList(): Int {
