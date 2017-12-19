@@ -1,5 +1,6 @@
 import ru.vodopyan.daniil.JavaImpl
 import ru.vodopyan.daniil.KotlinImpl
+import ru.vodopyan.daniil.MergedKotlinImpl
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -10,8 +11,10 @@ class TransformTest {
         for(size in sizes) {
             val impl1 = KotlinImpl(size)
             val impl2 = JavaImpl(size)
+            val impl3 = MergedKotlinImpl(size)
 
             assertEquals(impl1.baseline(), impl2.baseline())
+            assertEquals(impl2.baseline(), impl3.baseline())
         }
     }
 
@@ -19,8 +22,10 @@ class TransformTest {
         for(size in sizes) {
             val impl1 = KotlinImpl(size)
             val impl2 = JavaImpl(size)
+            val impl3 = MergedKotlinImpl(size)
 
             assertEquals(impl1.transformArray(), impl2.transformArray())
+            assertEquals(impl2.transformArray(), impl3.transformArray())
         }
     }
 
@@ -28,8 +33,10 @@ class TransformTest {
         for(size in sizes) {
             val impl1 = KotlinImpl(size)
             val impl2 = JavaImpl(size)
+            val impl3 = MergedKotlinImpl(size)
 
             assertEquals(impl1.transformArrayInt(), impl2.transformArrayInt())
+            assertEquals(impl2.transformArrayInt(), impl3.transformArrayInt())
         }
     }
 
@@ -37,8 +44,10 @@ class TransformTest {
         for(size in sizes) {
             val impl1 = KotlinImpl(size)
             val impl2 = JavaImpl(size)
+            val impl3 = MergedKotlinImpl(size)
 
             assertEquals(impl1.transformIntArray(), impl2.transformIntArray())
+            assertEquals(impl2.transformIntArray(), impl3.transformIntArray())
         }
     }
 
@@ -46,8 +55,10 @@ class TransformTest {
         for(size in sizes) {
             val impl1 = KotlinImpl(size)
             val impl2 = JavaImpl(size)
+            val impl3 = MergedKotlinImpl(size)
 
             assertEquals(impl1.transformList(), impl2.transformList())
+            assertEquals(impl2.transformList(), impl3.transformList())
         }
     }
 
@@ -55,8 +66,10 @@ class TransformTest {
         for(size in sizes) {
             val impl1 = KotlinImpl(size)
             val impl2 = JavaImpl(size)
+            val impl3 = MergedKotlinImpl(size)
 
             assertEquals(impl1.transformListInt(), impl2.transformListInt())
+            assertEquals(impl2.transformListInt(), impl3.transformListInt())
         }
     }
 }
