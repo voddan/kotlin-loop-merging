@@ -3,6 +3,9 @@ package ru.vodopyan.daniil
 import org.openjdk.jmh.annotations.*
 import java.util.*
 
+/**
+ * The Kotlin code that we are trying to optimize
+ * */
 @State(value = Scope.Benchmark)
 @Fork(value = 1, warmups = 0)
 @Measurement(iterations = 2)
@@ -15,11 +18,11 @@ open class KotlinImpl {
     @JvmField
     var size: Int = 0
 
-    private lateinit var listInt: List<Int>
-    private lateinit var listStr: List<String>
-    private lateinit var arrInt: Array<Int>
-    private lateinit var arrStr: Array<String>
-    private lateinit var intArr: IntArray
+    lateinit var listInt: List<Int>
+    lateinit var listStr: List<String>
+    lateinit var arrInt: Array<Int>
+    lateinit var arrStr: Array<String>
+    lateinit var intArr: IntArray
 
     @Setup
     fun init() {
