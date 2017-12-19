@@ -24,13 +24,15 @@ public class JavaImpl {
     @Param({"3", "10"})
     public int size;
 
-    @NotNull List<Integer> listInt;
-    @NotNull List<String> listStr;
-    @NotNull Integer[] arrInt;
-    @NotNull String[] arrStr;
-    @NotNull int[] intArr;
+    @NotNull public List<Integer> listInt;
+    @NotNull public List<String> listStr;
+    @NotNull public Integer[] arrInt;
+    @NotNull public String[] arrStr;
+    @NotNull public int[] intArr;
 
-    JavaImpl(int size) {
+    public JavaImpl() {}
+
+    public JavaImpl(int size) {
         this.size = size;
         init();
     }

@@ -10,7 +10,7 @@ import java.util.*
 @Fork(value = 1, warmups = 0)
 @Measurement(iterations = 2)
 @Warmup(iterations = 0)
-open class KotlinImpl {
+open class KotlinImpl() {
     private val rand = Random(0)
 
 //    @Param(value = ["3", "10", "50", "100", "1000", "10000", "100000", "1000000"])
@@ -23,6 +23,11 @@ open class KotlinImpl {
     lateinit var arrInt: Array<Int>
     lateinit var arrStr: Array<String>
     lateinit var intArr: IntArray
+
+    constructor(size: Int) : this() {
+        this.size = size
+        init()
+    }
 
     @Setup
     fun init() {
