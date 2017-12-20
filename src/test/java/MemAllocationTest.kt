@@ -1,5 +1,6 @@
 import ru.vodopyan.daniil.JavaImpl
 import ru.vodopyan.daniil.KotlinImpl
+import ru.vodopyan.daniil.MergedKotlinImpl
 import java.lang.management.ManagementFactory
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -49,11 +50,14 @@ class MemAllocationTest {
         for(size in sizes) {
             val impl1 = KotlinImpl(size)
             val impl2 = JavaImpl(size)
+            val impl3 = MergedKotlinImpl(size)
 
             val bytes1 = stabiliseMeasureAllocatedBytes { impl1.baseline() }
             val bytes2 = stabiliseMeasureAllocatedBytes { impl2.baseline() }
+            val bytes3 = stabiliseMeasureAllocatedBytes { impl3.baseline() }
 
             assertEquals(bytes1, bytes2)
+            assertEquals(bytes3, bytes2)
             println("Allocated $bytes1 bytes")
         }
     }
@@ -62,11 +66,14 @@ class MemAllocationTest {
         for(size in sizes) {
             val impl1 = KotlinImpl(size)
             val impl2 = JavaImpl(size)
+            val impl3 = MergedKotlinImpl(size)
 
             val bytes1 = stabiliseMeasureAllocatedBytes { impl1.transformArray() }
             val bytes2 = stabiliseMeasureAllocatedBytes { impl2.transformArray() }
+            val bytes3 = stabiliseMeasureAllocatedBytes { impl3.transformArray() }
 
             assertEquals(bytes1, bytes2)
+            assertEquals(bytes3, bytes2)
             println("Allocated $bytes1 bytes")
         }
     }
@@ -75,11 +82,14 @@ class MemAllocationTest {
         for(size in sizes) {
             val impl1 = KotlinImpl(size)
             val impl2 = JavaImpl(size)
+            val impl3 = MergedKotlinImpl(size)
 
             val bytes1 = stabiliseMeasureAllocatedBytes { impl1.transformArrayInt() }
             val bytes2 = stabiliseMeasureAllocatedBytes { impl2.transformArrayInt() }
+            val bytes3 = stabiliseMeasureAllocatedBytes { impl3.transformArrayInt() }
 
             assertEquals(bytes1, bytes2)
+            assertEquals(bytes3, bytes2)
             println("Allocated $bytes1 bytes")
         }
     }
@@ -88,11 +98,14 @@ class MemAllocationTest {
         for(size in sizes) {
             val impl1 = KotlinImpl(size)
             val impl2 = JavaImpl(size)
+            val impl3 = MergedKotlinImpl(size)
 
             val bytes1 = stabiliseMeasureAllocatedBytes { impl1.transformIntArray() }
             val bytes2 = stabiliseMeasureAllocatedBytes { impl2.transformIntArray() }
+            val bytes3 = stabiliseMeasureAllocatedBytes { impl3.transformIntArray() }
 
             assertEquals(bytes1, bytes2)
+            assertEquals(bytes3, bytes2)
             println("Allocated $bytes1 bytes")
         }
     }
@@ -101,11 +114,14 @@ class MemAllocationTest {
         for(size in sizes) {
             val impl1 = KotlinImpl(size)
             val impl2 = JavaImpl(size)
+            val impl3 = MergedKotlinImpl(size)
 
             val bytes1 = stabiliseMeasureAllocatedBytes { impl1.transformList() }
             val bytes2 = stabiliseMeasureAllocatedBytes { impl2.transformList() }
+            val bytes3 = stabiliseMeasureAllocatedBytes { impl3.transformList() }
 
             assertEquals(bytes1, bytes2)
+            assertEquals(bytes3, bytes2)
             println("Allocated $bytes1 bytes")
         }
     }
@@ -114,11 +130,14 @@ class MemAllocationTest {
         for(size in sizes) {
             val impl1 = KotlinImpl(size)
             val impl2 = JavaImpl(size)
+            val impl3 = MergedKotlinImpl(size)
 
             val bytes1 = stabiliseMeasureAllocatedBytes { impl1.transformListInt() }
             val bytes2 = stabiliseMeasureAllocatedBytes { impl2.transformListInt() }
+            val bytes3 = stabiliseMeasureAllocatedBytes { impl3.transformListInt() }
 
             assertEquals(bytes1, bytes2)
+            assertEquals(bytes3, bytes2)
             println("Allocated $bytes1 bytes")
         }
     }
