@@ -1,3 +1,5 @@
+@file:Suppress("LoopToCallChain")
+
 package ru.vodopyan.daniil
 
 import org.openjdk.jmh.annotations.*
@@ -6,7 +8,7 @@ import java.util.ArrayList
 import java.util.Random
 
 /**
- * Cleaned-up Java code from [KotlinImpl]
+ * Optimised Kotlin code with merged loops
  */
 @State(Scope.Benchmark)
 @Fork(value = 1, warmups = 0)
@@ -45,21 +47,16 @@ class MergedKotlinImpl() {
         val list0 = this.listStr
         val list1 = ArrayList<String>()
 
-        val var5 = list0.iterator()
-        while (var5.hasNext()) {
-            val `element$iv$iv` = var5.next()
-
-            if (`element$iv$iv`.startsWith('a', false)) {
-                list1.add(`element$iv$iv`)
+        for(element in list0) {
+            if (element.startsWith('a', false)) {
+                list1.add(element)
             }
         }
 
         val list2 = ArrayList<Int>(list1.size)
 
-        val var17 = list1.iterator()
-        while (var17.hasNext()) {
-            val it = var17.next()
-            list2.add(it.length)
+        for (element in list1) {
+            list2.add(element.length)
         }
 
         return list2.sum()
@@ -70,19 +67,16 @@ class MergedKotlinImpl() {
         val list0 = this.arrStr
         val list1 = ArrayList<String>()
 
-        for (var5 in list0.indices) {
-            val it = list0[var5]
-            if (it.startsWith('a', false)) {
-                list1.add(it)
+        for (element in list0) {
+            if (element.startsWith('a', false)) {
+                list1.add(element)
             }
         }
 
         val list2 = ArrayList<Int>(list1.size)
-        val var18 = list1.iterator()
 
-        while (var18.hasNext()) {
-            val it = var18.next()
-            list2.add(it.length)
+        for (element in list1) {
+            list2.add(element.length)
         }
 
         return list2.sum()
@@ -92,24 +86,17 @@ class MergedKotlinImpl() {
     fun transformListInt(): Int {
         val list0 = this.listInt
         val list1 = ArrayList<Int>()
-        val var5 = list0.iterator()
 
-        while (var5.hasNext()) {
-            val `element$iv$iv` = var5.next()
-            val it = `element$iv$iv`.toInt()
-            if (it > 10) {
-                list1.add(`element$iv$iv`)
+        for (element in list0) {
+            if (element > 10) {
+                list1.add(element)
             }
         }
 
-        val list2 = ArrayList<Int>((list1 as List<*>).size)
-        val var17 = list1.iterator()
+        val list2 = ArrayList<Int>(list1.size)
 
-        while (var17.hasNext()) {
-            val `item$iv$iv` = var17.next()
-            val it = `item$iv$iv`.toInt()
-            val var13 = 1 - it
-            list2.add(var13)
+        for (element in list1) {
+            list2.add(1 - element)
         }
 
         return list2.sum()
@@ -119,24 +106,18 @@ class MergedKotlinImpl() {
     fun transformArrayInt(): Int {
         val list0 = this.arrInt
 
-        val list1 = ArrayList<Int>()
+        val list1: ArrayList<Int> = ArrayList<Int>()
 
-        for (var5 in list0.indices) {
-            val `element$iv$iv` = list0[var5]
-            val it = `element$iv$iv`.toInt()
-            if (it > 10) {
-                list1.add(`element$iv$iv`)
+        for(element in list0) {
+            if (element > 10) {
+                list1.add(element)
             }
         }
 
         val list2 = ArrayList<Int>(list1.size)
-        val var18 = list1.iterator()
 
-        while (var18.hasNext()) {
-            val `item$iv$iv` = var18.next()
-            val it = `item$iv$iv`.toInt()
-            val var13 = 1 - it
-            list2.add(var13)
+        for (element in list1) {
+            list2.add(1 - element)
         }
 
         return list2.sum()
@@ -148,21 +129,16 @@ class MergedKotlinImpl() {
         val list0 = this.intArr
         val list1 = ArrayList<Int>()
 
-        for (var5 in list0.indices) {
-            val `element$iv$iv` = list0[var5]
-            if (`element$iv$iv` > 10) {
-                list1.add(`element$iv$iv`)
+        for (element in list0) {
+            if (element > 10) {
+                list1.add(element)
             }
         }
 
         val list2 = ArrayList<Int>(list1.size)
-        val var18 = list1.iterator()
 
-        while (var18.hasNext()) {
-            val `item$iv$iv` = var18.next()
-            val it = `item$iv$iv`.toInt()
-            val var13 = 1 - it
-            list2.add(var13)
+        for (element in list1) {
+            list2.add(1 - element)
         }
 
         return list2.sum()
