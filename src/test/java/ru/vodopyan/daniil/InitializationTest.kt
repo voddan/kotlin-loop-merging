@@ -1,6 +1,5 @@
-import ru.vodopyan.daniil.JavaImpl
-import ru.vodopyan.daniil.KotlinImpl
-import ru.vodopyan.daniil.MergedKotlinImpl
+package ru.vodopyan.daniil
+
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue

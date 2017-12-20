@@ -1,7 +1,5 @@
-import ru.vodopyan.daniil.JavaImpl
-import ru.vodopyan.daniil.KotlinImpl
-import ru.vodopyan.daniil.MergedKotlinImpl
-import ru.vodopyan.daniil.NaiveKotlinImpl
+package ru.vodopyan.daniil
+
 import java.lang.management.ManagementFactory
 import kotlin.test.Test
 import kotlin.test.assertEquals
