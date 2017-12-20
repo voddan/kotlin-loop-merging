@@ -14,27 +14,19 @@ class MemAllocationTest {
     private val threadMXBean = (ManagementFactory.getThreadMXBean() as? com.sun.management.ThreadMXBean)
             ?: throw RuntimeException("Runtime does not support com.sun.management.ThreadMXBean")
 
-    /**
-     * May run [block] several times. Don't forget to warm-up!
-     * */
     private inline fun measureAllocatedBytes(block: () -> Unit): Long {
-        for(retry in 2 downTo 0) {  // 3 tries
-            val threadId = Thread.currentThread().id
-            val before = threadMXBean.getThreadAllocatedBytes(threadId)
-            block()
-            val after = threadMXBean.getThreadAllocatedBytes(threadId)
+        val threadId = Thread.currentThread().id
 
-            if(Thread.currentThread().id == threadId)
-                return after - before
-            else
-               println("A thread switch accrued. Will retry $retry more times")
-        }
-        throw RuntimeException("Too many thread switches. Memory allocations cannot be measured")
+        val before = threadMXBean.getThreadAllocatedBytes(threadId)
+        block()
+        val after = threadMXBean.getThreadAllocatedBytes(threadId)
+
+        return after - before
     }
 
     private inline fun stabiliseMeasureAllocatedBytes(block: () -> Unit): Long {
-        val runs = List(7) { measureAllocatedBytes(block) }
-        val results = runs.drop(2) // skip warm-up
+        val runs = List(4) { measureAllocatedBytes(block) }
+        val results = runs.drop(1) // skip warm-up
 
         val counts = results.groupingBy { it }.eachCount()
         val (commonResult, commonCount) = counts.entries.maxBy { (result, count) -> count }!!
