@@ -17,8 +17,7 @@ import java.util.Random
 class MergedKotlinImpl() {
     private val rand = Random(0)
 
-    //    @Param(value = ["3", "10", "50", "100", "1000", "10000", "100000", "1000000"])
-    @Param(value = ["3", "10"])
+    @Param(value = ["3", "10", "50", "100", "1000", "10000", "100000", "1000000"])
     @JvmField
     var size: Int = 0
 
@@ -53,10 +52,10 @@ class MergedKotlinImpl() {
             }
         }
 
-        val list2 = ArrayList<Int>(list1.size)
+        val list2 = list1 as ArrayList<Int>
 
-        for (element in list1) {
-            list2.add(element.length)
+        for (i in list1.indices) {
+            list1[i] = (list1 as ArrayList<String>)[i].length
         }
 
         return list2.sum()
@@ -73,10 +72,10 @@ class MergedKotlinImpl() {
             }
         }
 
-        val list2 = ArrayList<Int>(list1.size)
+        val list2 = list1 as ArrayList<Int>
 
-        for (element in list1) {
-            list2.add(element.length)
+        for (i in list1.indices) {
+            list1[i] = (list1 as ArrayList<String>)[i].length
         }
 
         return list2.sum()
@@ -93,10 +92,10 @@ class MergedKotlinImpl() {
             }
         }
 
-        val list2 = ArrayList<Int>(list1.size)
+        val list2 = list1
 
-        for (element in list1) {
-            list2.add(1 - element)
+        for (i in list1.indices) {
+            list2[i] = 1 - list1[i]
         }
 
         return list2.sum()
@@ -114,10 +113,10 @@ class MergedKotlinImpl() {
             }
         }
 
-        val list2 = ArrayList<Int>(list1.size)
+        val list2 = list1
 
-        for (element in list1) {
-            list2.add(1 - element)
+        for (i in list1.indices) {
+            list2[i] = 1 - list1[i]
         }
 
         return list2.sum()
@@ -135,10 +134,10 @@ class MergedKotlinImpl() {
             }
         }
 
-        val list2 = ArrayList<Int>(list1.size)
+        val list2 = list1
 
-        for (element in list1) {
-            list2.add(1 - element)
+        for (i in list1.indices) {
+            list2[i] = 1 - list1[i]
         }
 
         return list2.sum()
