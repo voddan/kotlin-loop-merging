@@ -13,15 +13,11 @@ import org.openjdk.jmh.annotations.*;
  * Cleaned-up Java code from [KotlinImpl]
  * */
 @State(Scope.Benchmark)
-@Fork(value = 1, warmups = 0)
-@Measurement(iterations = 2)
-@Warmup(iterations = 0)
 public class JavaImpl {
 
     private final Random rand = new Random(0L);
 
-//    @Param({"3", "10", "50", "100", "1000", "10000", "100000", "1000000"})
-    @Param({"3", "10"})
+    @Param({"3", "10", "50", "100", "1000", "10000", "100000", "1000000"})
     public int size;
 
     @NotNull public List<Integer> listInt;

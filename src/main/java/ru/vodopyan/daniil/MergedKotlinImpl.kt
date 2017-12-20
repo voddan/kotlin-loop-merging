@@ -11,9 +11,6 @@ import java.util.Random
  * Optimised Kotlin code with merged loops
  */
 @State(Scope.Benchmark)
-@Fork(value = 1, warmups = 0)
-@Measurement(iterations = 2)
-@Warmup(iterations = 0)
 class MergedKotlinImpl() {
     private val rand = Random(0)
 

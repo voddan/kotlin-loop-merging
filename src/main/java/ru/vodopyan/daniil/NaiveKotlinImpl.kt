@@ -11,9 +11,6 @@ import java.util.Random
  * Java-like Kotlin code imitating [JavaImpl]
  */
 @State(Scope.Benchmark)
-@Fork(value = 1, warmups = 0)
-@Measurement(iterations = 2)
-@Warmup(iterations = 0)
 class NaiveKotlinImpl() {
     private val rand = Random(0)
 

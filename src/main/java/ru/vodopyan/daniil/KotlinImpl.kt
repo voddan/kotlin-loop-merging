@@ -7,14 +7,10 @@ import java.util.*
  * The Kotlin code that we are trying to optimize
  * */
 @State(value = Scope.Benchmark)
-@Fork(value = 1, warmups = 0)
-@Measurement(iterations = 2)
-@Warmup(iterations = 0)
 open class KotlinImpl() {
     private val rand = Random(0)
 
-//    @Param(value = ["3", "10", "50", "100", "1000", "10000", "100000", "1000000"])
-    @Param(value = ["3", "10"])
+    @Param(value = ["3", "10", "50", "100", "1000", "10000", "100000", "1000000"])
     @JvmField
     var size: Int = 0
 
